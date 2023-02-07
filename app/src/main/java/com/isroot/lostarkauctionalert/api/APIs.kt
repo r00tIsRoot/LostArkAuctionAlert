@@ -1,10 +1,11 @@
 package com.isroot.lostarkauctionalert.api
 
-import com.isroot.lostarkauctionalert.data.DTO.AuctionInfo
+import com.isroot.lostarkauctionalert.data.DTO.AuctionOption
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Header
 
 interface APIs {
-    @GET("/api/v1/auction")
-    fun getAuctionInfo(): Call<AuctionInfo>
+    @GET("/auctions/options")
+    fun getAuctionOption(@Header("Authorization") apiKey: String): Call<AuctionOption>
 }

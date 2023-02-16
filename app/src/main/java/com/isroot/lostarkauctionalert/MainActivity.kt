@@ -21,6 +21,7 @@ class MainActivity : BaseActivity() {
         viewModel = obtainViewModel()
         (binding as ActivityMainBinding).lifecycleOwner = this
         (binding as ActivityMainBinding).viewModel = viewModel
+
     }
 
     private fun obtainViewModel(): MainViewModel {

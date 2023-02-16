@@ -2,6 +2,7 @@ package com.isroot.lostarkauctionalert.repositories
 
 import com.isroot.lostarkauctionalert.api.APIs
 import com.isroot.lostarkauctionalert.data.DTO.AuctionOption
+import com.isroot.lostarkauctionalert.data.Entities.ApiKey
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,15 +40,18 @@ class RemoteLoADataSourceImpl: LoADataSource {
         call.enqueue(object : Callback<AuctionOption> {
             override fun onResponse(call: Call<AuctionOption>, response: Response<AuctionOption>) {
                 if(response.isSuccessful) {
-                    callback.onSucceed(response.body()!!)
+                    callback.onGetAuctionInfoSucceed(response.body()!!)
                 } else {
-                    callback.onFailed(response.code().toString())
+                    callback.onGetAuctionInfoFailed(response.code().toString())
                 }
             }
 
             override fun onFailure(call: Call<AuctionOption>, t: Throwable) {
-                callback.onFailed("${t.printStackTrace()}")
+                callback.onGetAuctionInfoFailed("${t.printStackTrace()}")
             }
         })
+    }
+
+    override fun insertApiKey(apiKey: ApiKey) {
     }
 }

@@ -8,13 +8,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.AbstractComposeView
 import androidx.compose.ui.unit.dp
 import com.isroot.lostarkauctionalert.data.Entities.ApiKey
@@ -28,7 +29,8 @@ fun ApiKeysList(
     // We save the scrolling position with this state
     val scrollState = rememberLazyListState()
 
-    LazyColumn(state = scrollState,
+    LazyColumn(
+        state = scrollState,
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
@@ -51,9 +53,9 @@ fun ApiKeysList(
                 listener.onClickApiKey(apiKey)
             }) {
                 Row(modifier = Modifier.fillMaxWidth()) {
-                    Text(text = "${apiKey.apiName}")
+                    Text(text = apiKey.apiName)
                     Spacer(modifier = Modifier.width(16.dp))
-                    Text(text = "${apiKey.apiKey}")
+                    Text(text = apiKey.apiKey)
                 }
             }
         }

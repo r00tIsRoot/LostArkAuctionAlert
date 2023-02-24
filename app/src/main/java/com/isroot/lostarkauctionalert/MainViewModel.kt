@@ -8,11 +8,13 @@ import com.isroot.lostarkauctionalert.data.DTO.AuctionOption
 import com.isroot.lostarkauctionalert.data.Entities.ApiKey
 import com.isroot.lostarkauctionalert.repositories.LoADataSource
 import com.isroot.lostarkauctionalert.repositories.LoARepository
+import com.isroot.lostarkauctionalert.views.ApiKeysListViewListener
 
 class MainViewModel(application: Application) : BaseViewModel(application),
     LoADataSource.GetAuctionInfoCallback,
     LoADataSource.InsertApiKeyCallback,
-        LoADataSource.GetAllApiKeysCallback
+        LoADataSource.GetAllApiKeysCallback,
+        ApiKeysListViewListener
 {
     val _apiKeyNameStr = MutableLiveData<String>()
     val apiKeyNameStr: LiveData<String> = _apiKeyNameStr
@@ -47,6 +49,17 @@ class MainViewModel(application: Application) : BaseViewModel(application),
         loARepository = LoARepository.getInstance(application)
 
         loARepository.getAllApiKeys(this)
+    }
+
+    override fun onClickApiKey(apiKey: ApiKey) {
+        Log.d("isrootLog", "onClickApiKey")
+        if(apiKey.apiName.isNotEmpty() && apiKey.apiKey.isNotEmpty()) {
+            loARepository.getAuctionOption("bearer ${apiKey.apiKey}", this)
+        }
+    }
+
+    fun asApiKey(apiKeyObj: Any): ApiKey {
+        return apiKeyObj as ApiKey
     }
 
     fun onClickStartApiBtn() {

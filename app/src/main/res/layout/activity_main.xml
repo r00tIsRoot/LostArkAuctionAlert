@@ -27,7 +27,6 @@
             binding:listener="@{viewModel}"
             />
 
-
         <EditText
             android:id="@+id/apiKeyNameInputET"
             android:layout_width="match_parent"

@@ -36,6 +36,12 @@ class MainViewModel(application: Application) : BaseViewModel(application),
         _apiKey.value = apiKey
     }
 
+    private val _auctionResult = MutableLiveData<AuctionOption>()
+    val auctionResult: LiveData<AuctionOption> = _auctionResult
+    fun setauctionResult(auctionResult: AuctionOption) {
+        _auctionResult.value = auctionResult
+    }
+
     private var loARepository: LoARepository
 
 //    fun setApiKey(apiKey: String) {
@@ -71,6 +77,7 @@ class MainViewModel(application: Application) : BaseViewModel(application),
 
     override fun onGetAuctionInfoSucceed(auctionOption: AuctionOption) {
         Log.d("isrootLog", "response auctionOption is : $auctionOption")
+        setauctionResult(auctionOption)
         val apiKey = ApiKey(apiKeyNameStr.value!!, apiKeyStr.value!!)
         setApiKey(apiKey)
         loARepository.insertApiKey(apiKey, this)

@@ -1,7 +1,9 @@
-package com.isroot.lostarkauctionalert
+package com.isroot.lostarkauctionalert.main
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.isroot.lostarkauctionalert.BaseActivity
+import com.isroot.lostarkauctionalert.R
 import com.isroot.lostarkauctionalert.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {

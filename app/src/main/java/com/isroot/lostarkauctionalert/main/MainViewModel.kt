@@ -1,9 +1,10 @@
-package com.isroot.lostarkauctionalert
+package com.isroot.lostarkauctionalert.main
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.isroot.lostarkauctionalert.BaseViewModel
 import com.isroot.lostarkauctionalert.data.DTO.AuctionOption
 import com.isroot.lostarkauctionalert.data.Entities.ApiKey
 import com.isroot.lostarkauctionalert.repositories.LoADataSource
